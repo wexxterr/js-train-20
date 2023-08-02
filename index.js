@@ -20,10 +20,6 @@ function Vehicle(brand, model, year, mileage) {
 }
 
 // // Рядковому представленю Vehicle призначаємо функцію яка повертає рядок: <brand> <model> <year>
-Vehicle.prototype.toString = function () {
-  return `${this.brand} ${this.model} ${this.year}`;
-};
-
 // // valueOf - це метод, який використовується JavaScript для конвертації об'єкта в примітивне значення.
 // // Ми перевизначаємо його тут, щоб він повертав this.mileage.
 Vehicle.prototype.valueOf = function () {
@@ -132,7 +128,7 @@ function Truck(
 ) {
   //   // Викликаємо Vehicle.call та передаємо в нього: this, brand, model, year, mileage
   Vehicle.call(
-    this[brand, model, year, mileage]
+    this, brand, model, year, mileage
   )
   //   //  Записуєм в this.color значення аргументу color, в this.engineType значення аргументу engineType і так далі зі всіми аргументами
   this.color = color
@@ -173,6 +169,15 @@ const myTruck = new Truck("Toyota", "Tundra", 2019, 20000, "Red", "V8", 10000, "
 //  * | weight           | 5600                         |
 //  */
 car.kilometers = 0;
+
+car.tow = function (weight) {
+  if (weight <= this.towingCapacity) {
+    console.log("Тяга навантаження...");
+  } else {
+    console.log("Навантаження занадто важке для буксирування");
+  }
+}
+
 // // Викликаємо метод tow з вагою меншою за towingCapacity
 car.tow(8000)
 // // Викликаємо метод tow з вагою більшою за towingCapacity
